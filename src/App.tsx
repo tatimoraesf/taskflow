@@ -33,6 +33,10 @@ function App() {
     return a.done ? 1 : -1;
   })
 
+  const handleDeleteTask = (id: string) => {
+    setTasks(tasks.filter(task => task.id !== id))
+  }
+
   return (
     <div style={{
       width: '600px',
@@ -53,7 +57,7 @@ function App() {
 
       <div style={{ width: '100%' }}>
         {sortedTasks.map(task => (
-          <TaskCard key={task.id} task={task} onToggle={handleToggleTask} />
+          <TaskCard key={task.id} task={task} onToggle={handleToggleTask} onDelete={handleDeleteTask} />
         ))}
       </div>
     </div>
