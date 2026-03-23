@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import type { Task, TaskPriority, TaskStatus } from './types/task.types';
+import { useLocalStorage } from './hooks/useLocalStorage';
 import TaskCard from './components/TaskCard';
 import TaskForm from './components/TaskForm';
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>([
+  const [tasks, setTasks] = useLocalStorage<Task[]>('taskflow-tasks', [
     {
       id: '1',
       title: 'Criar o projeto TaskFlow',
