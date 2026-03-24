@@ -4,9 +4,11 @@ import { useLocalStorage } from './hooks/useLocalStorage';
 import TaskCard from './components/TaskCard';
 import TaskForm from './components/TaskForm';
 import ProgressBar from './components/ProgressBar';
+import TaskEditModal from './components/TaskEditModal';
 
 function App() {
   const [tasks, setTasks] = useLocalStorage<Task[]>('taskflow-tasks', [])
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
 
   const handleAddTask = (title: string, priority: TaskPriority) => {
     const newTask: Task = {
@@ -17,7 +19,7 @@ function App() {
       createdAt: new Date(),
     }
 
-    setTasks([...tasks, newTask])
+    setTasks([newTask, ...tasks])
   }
 
   const handleToggleTask = (id: string) => {
@@ -28,14 +30,20 @@ function App() {
     ))
   }
 
+  const handleDeleteTask = (id: string) => {
+    setTasks(tasks.filter(task => task.id !== id))
+  }
+
+  const handleEditTask = (id: string, title: string, priority: TaskPriority, description?: string) => {
+    setTasks(tasks.map(task => task.id === id ? { ...task, title, priority, description } : task
+    ))
+    setEditingTask(null);
+  }
+
   const sortedTasks = [...tasks].sort((a, b) => {
     if (a.done === b.done) return 0;
     return a.done ? 1 : -1;
   })
-
-  const handleDeleteTask = (id: string) => {
-    setTasks(tasks.filter(task => task.id !== id))
-  }
 
   return (
     <div style={{
@@ -57,9 +65,22 @@ function App() {
 
       <div style={{ width: '100%' }}>
         {sortedTasks.map(task => (
-          <TaskCard key={task.id} task={task} onToggle={handleToggleTask} onDelete={handleDeleteTask} />
+          <TaskCard
+            key={task.id}
+            task={task}
+            onToggle={handleToggleTask}
+            onDelete={handleDeleteTask}
+            onEdit={setEditingTask}
+          />
         ))}
       </div>
+      {editingTask && (
+        <TaskEditModal
+          task={editingTask}
+          onSave={handleEditTask}
+          onClose={() => setEditingTask(null)}
+        />
+      )}
     </div>
   )
 }
