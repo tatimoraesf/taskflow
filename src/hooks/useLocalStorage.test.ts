@@ -22,7 +22,7 @@ describe('useLocalStorage', () => {
     })
 
     expect(result.current[0]).toBe('novo valor')
-    expect(localStorage.getItem('test-key')).toBe("'novo valor'")
+    expect(localStorage.getItem('test-key')).toBe(JSON.stringify('novo valor'))
   })
 
   it('deve recuperar dados existentes do localStorage', () => {

@@ -8,7 +8,18 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
-    css: true, // Processa CSS nos testes
+    css: false,
+    // Mudamos de 'threads' para 'forks' para evitar conflitos de módulos na memória
+    pool: 'forks',
+    // Desativamos o paralelismo para o Node não se perder nos imports
+    fileParallelism: false,
+
+    server: {
+      deps: {
+        // Forçamos o Vitest a processar essas bibliotecas problemáticas
+        inline: ['@csstools/css-calc', '@asamuzakjp/css-color']
+      }
+    }
   },
   resolve: {
     alias: {

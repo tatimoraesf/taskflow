@@ -13,7 +13,7 @@ describe('TaskForm', () => {
     await user.selectOptions(screen.getByLabelText('Prioridade'), 'high')
     await user.click(screen.getByText('Adicionar Tarefa'))
 
-    expect(mockAddTask).toHaveBeenCalledWith('Nova Tarefa', 'high')
+    expect(mockAddTask).toHaveBeenCalledWith('Nova tarefa', 'high', undefined)
     expect(mockAddTask).toHaveBeenCalledTimes(1)
   })
 

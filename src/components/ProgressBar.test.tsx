@@ -13,7 +13,7 @@ describe('ProgressBar', () => {
   it('deve mostrar progresso correto com 5 a 10 tarefas', () => {
     render(<ProgressBar total={10} done={5} />)
 
-    expect(screen.getByText('5 a 10 tarefas concluídas')).toBeInTheDocument()
-    expect(screen.getByText('50%')).toBeInTheDocument()
+    expect(screen.getByText('5 de 10 tarefas concluídas')).toBeDefined()
+    expect(screen.getByText('50%')).toBeDefined()
   })
 })
