@@ -32,4 +32,41 @@ describe('useLocalStorage', () => {
 
     expect(result.current[0]).toBe('salvo')
   })
+
+  it('deve retornar o valor inicial e logar erro seo localStorage falhar no carregamento', () => {
+    //Força o localStorage a lançar erro
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
+
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      throw new Error('Falha simulada')
+    })
+
+    const { result } = renderHook(() => useLocalStorage('test-key', 'inicial'))
+
+    expect(result.current[0]).toBe('inicial')
+
+    expect(consoleSpy).toHaveBeenCalled()
+
+    consoleSpy.mockRestore()
+    vi.restoreAllMocks()
+  })
+
+  it('deve logar erro se falhar ao salvar no localStorage', async () => {
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
+
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      throw new Error('Falha ao salvar')
+    })
+
+    const { result } = renderHook(() => useLocalStorage('test-key', 'inicial'))
+
+    await act(async () => {
+      result.current[1]('tentativa de salvar')
+    })
+
+    expect(consoleSpy).toHaveBeenCalled()
+
+    consoleSpy.mockRestore()
+    vi.restoreAllMocks()
+  })
 })
