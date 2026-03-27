@@ -4,7 +4,7 @@ O **TaskFlow** é um gerenciador de tarefas pessoal que une uma interface modern
 
 ![Dashboard do TaskFlow](./public/screenshots/dashboard.png)
 
-🔗 **[Acesse a aplicação ao vivo aqui](https://taskflow-fztei0bf8-tatiane-moraes-projects.vercel.app/)**
+🔗 **[Acesse a aplicação ao vivo aqui](https://taskflow-three-zeta.vercel.app/)**
 
 ---
 
