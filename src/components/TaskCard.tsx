@@ -20,23 +20,20 @@ function TaskCard({ task, onToggle, onDelete, onEdit }: TaskCardProps) {
   const [confirming, setConfirming] = useState(false);
 
   return (
-    <div className={`task-card ${task.done ? 'task-card--done' : ''}`}>
+    <div className={`task-card ${task.done ? 'task-card--done' : ''} ${confirming ? 'task-card--confirm-active' : ''}`}>
       <input
         type="checkbox"
         className="task-card__checkbox"
         checked={task.done}
         onChange={() => onToggle(task.id)}
       />
-
-      <div className="task-card__content">
-        <div className="task-card__info">
-          <h3 className="task-card__title">{task.title}</h3>
-          {task.description && (
-            <p className="task-card__description">{task.description}</p>
-          )}
-        </div>
-        <span className={`task-card__priority task-card__priority--${task.priority}`}>{priorityLabel[task.priority]}</span>
+      <div className="task-card__info">
+        <h3 className="task-card__title">{task.title}</h3>
+        {task.description && (
+          <p className="task-card__description">{task.description}</p>
+        )}
       </div>
+      <span className={`task-card__priority task-card__priority--${task.priority}`}>{priorityLabel[task.priority]}</span>
 
       <div className="task-card__actions">
         {confirming ? (
