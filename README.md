@@ -2,6 +2,10 @@
 
 O **TaskFlow** é um gerenciador de tarefas pessoal que une uma interface moderna a uma estrutura de código pensada na confiabilidade do usuário. Mais do que uma lista de tarefas, este projeto foi meu laboratório para aplicar boas práticas de QA (Quality Assurance).
 
+![Dashboard do TaskFlow](./public/screenshots/dashboard.png)
+
+🔗 **[Acesse a aplicação ao vivo aqui](https://taskflow-fztei0bf8-tatiane-moraes-projects.vercel.app/)**
+
 ---
 
 ## 🧪 Foco em Estabilidade e Qualidade
@@ -13,8 +17,8 @@ Durante o desenvolvimento, implementei:
 - **Cobertura de código** monitorada com relatórios do Vitest
 
 📁 Documentação disponível:
-- [Regras de Negócio (PRD)](./docs/PRD_TaskFlow.md)
-- [Casos de Teste](./docs/Casos_de_Teste_TaskFlow.md)
+- [Regras de Negócio (PRD)](https://github.com/tatimoraes/taskflow/blob/main/docs/PRD_TaskFlow.md)
+- [Casos de Teste](https://github.com/tatimoraes/taskflow/blob/main/docs/Casos_de_Teste_TaskFlow.md)
 
 ---
 
@@ -58,8 +62,6 @@ A colaboração com IA acelerou o aprendizado, mas cada decisão de implementaç
 **Testes**
 - Vitest (test runner)
 - React Testing Library (testes de componentes)
-
-![Coverage](assets/coverage.png)
 
 ---
 
