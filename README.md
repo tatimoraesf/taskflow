@@ -1,73 +1,78 @@
-# React + TypeScript + Vite
+# TaskFlow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O **TaskFlow** é um gerenciador de tarefas pessoal que une uma interface moderna a uma estrutura de código pensada na confiabilidade do usuário. Mais do que uma lista de tarefas, este projeto foi meu laboratório para aplicar boas práticas de QA (Quality Assurance).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🧪 Foco em Estabilidade e Qualidade
 
-## React Compiler
+Durante o desenvolvimento, implementei:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **22 testes automatizados** cobrindo os principais fluxos da aplicação
+- **Documentação estruturada** incluindo casos de teste e regras de negócio
+- **Cobertura de código** monitorada com relatórios do Vitest
 
-## Expanding the ESLint configuration
+📁 Documentação disponível:
+- [Regras de Negócio (PRD)](./docs/PRD_TaskFlow.md)
+- [Casos de Teste](./docs/Casos_de_Teste_TaskFlow.md)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ✨ Funcionalidades
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**Gestão de Tarefas**
+- Criar, editar e deletar tarefas com título, descrição e prioridade
+- Sistema de prioridades (Alta, Média, Baixa)
+- Barra de progresso visual
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**Experiência de Uso**
+- Busca em tempo real por título ou descrição
+- Filtros por status (Todas, Pendentes, Concluídas)
+- Interface em dark mode
+- Persistência automática no navegador
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🤝 Parceria com IA
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Este projeto contou com o apoio estratégico de IAs (Claude/Gemini), que atuaram como mentores durante o aprendizado. Usei IA para:
+
+- Refinamento de UX/UI: Evolução do layout para um padrão mais profissional e moderno.
+- Resolução de Problemas: Auxílio no debug de CSS complexo e configurações de ambiente de teste.
+- Aprendizado Acelerado: Discussão de padrões de projeto e melhores práticas de código.
+
+A colaboração com IA acelerou o aprendizado, mas cada decisão de implementação foi minha - a IA serviu como guia, não como substituta do processo de aprendizado.
+
+---
+
+## 🛠️ Tecnologias
+
+**Core**
+- React 18 + TypeScript
+- Vite (build tool)
+
+**UI/UX**
+- Lucide React (ícones)
+- React Hot Toast (notificações)
+
+**Testes**
+- Vitest (test runner)
+- React Testing Library (testes de componentes)
+
+![Coverage](assets/coverage.png)
+
+---
+
+## 🚀 Rodando o Projeto
+```bash
+# Instale as dependências
+npm install
+
+# Inicie o projeto
+npm run dev
+
+# Rode os testes
+npm test
+
+# Ver Relatório de Cobertura
+npm run test:coverage
