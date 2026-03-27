@@ -131,7 +131,26 @@ describe('useTasks', () => {
     })
 
     expect(result.current.editingTask).toBeNull()
+  })
 
+  it('deve filtrar tarefas pelo título', () => {
+    const { result } = renderHook(() => useTasks())
 
+    act(() => {
+      result.current.addTask('Lavar Louça', 'low')
+      result.current.addTask('Estudar Vitest', 'high')
+    })
+
+    act(() => {
+      result.current.setSearchQuery('Estudar')
+    })
+
+    expect(result.current.tasks).toHaveLength(1)
+    expect(result.current.tasks[0].title).toBe('Estudar Vitest')
+
+    act(() => {
+      result.current.setSearchQuery('')
+    })
+    expect(result.current.tasks).toHaveLength(1)
   })
 })

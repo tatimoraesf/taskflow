@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 export const useTasks = () => {
   const [tasks, setTasks] = useLocalStorage<Task[]>('taskflow-tasks', [])
   const [editingTask, setEditingTask] = useState<Task | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const addTask = (title: string, priority: TaskPriority, description?: string) => {
     const cleanTitle = title.trim()
@@ -48,13 +49,19 @@ export const useTasks = () => {
     setEditingTask(null);
   }
 
-  const sortedTasks = [...tasks].sort((a, b) => {
-    if (a.done === b.done) return 0;
-    return a.done ? 1 : -1;
-  })
+  const filteredAndSortedTasks = tasks
+    .filter(task =>
+      task.title.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (a.done === b.done) return 0
+      return a.done ? 1 : -1
+    })
 
   return {
-    tasks: sortedTasks,
+    tasks: filteredAndSortedTasks,
+    searchQuery,
+    setSearchQuery,
     editingTask,
     setEditingTask,
     addTask,

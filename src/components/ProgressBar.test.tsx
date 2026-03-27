@@ -10,7 +10,7 @@ describe('ProgressBar', () => {
     expect(container.firstChild).toBeNull()
   })
 
-  it('deve mostrar progresso correto com 5 a 10 tarefas', () => {
+  it('deve mostrar progresso correto com 5 de 10 tarefas', () => {
     render(<ProgressBar total={10} done={5} />)
 
     expect(screen.getByText('5 de 10 tarefas concluídas')).toBeDefined()
