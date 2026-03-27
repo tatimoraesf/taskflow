@@ -4,7 +4,7 @@ import ProgressBar from './components/ProgressBar';
 import TaskEditModal from './components/TaskEditModal';
 import './App.css';
 import EmptyState from './components/EmptyState';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { useTasks } from './hooks/useTasks';
 import { SearchBar } from './components/SearchBar';
 
