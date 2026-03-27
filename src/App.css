@@ -1,9 +1,36 @@
 .app-container {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.main-content {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.sidebar {
+  flex: 1;
+  position: sticky;
+  top: 24px;
+}
+
+.tasks-section {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 950px) {
+  .main-content {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    position: static;
+    width: 100%;
+  }
 }
 
 .full-width-container {
@@ -19,6 +46,26 @@
   padding-bottom: 2.5rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .text-gray-500 {
-  color: #6b7280;
+  color: var(--text-muted);
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.text-purple-600 {
+  color: var(--primary);
+}
+
+.hover\:underline:hover {
+  text-decoration: underline;
+}
+
+.text-sm {
+  font-size: 0.875rem;
 }
