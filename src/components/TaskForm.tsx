@@ -25,24 +25,26 @@ function TaskForm({ onAddTask }: TaskFormProps) {
 
   return (
     <form className="task-form" onSubmit={handleSubmit} noValidate>
-      <div className="task-form__field">
-        <label htmlFor="title">Título da tarefa</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          placeholder="Ex: Estudar Typescript"
-          required
-        />
-      </div>
+      <div className="task-form__header-row">
+        <div className="task-form__field">
+          <label htmlFor="title">Título da tarefa</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Ex: Estudar Typescript"
+            required
+          />
+        </div>
 
-      <div className="task-form__field">
-        <label htmlFor="priority">Prioridade</label>
-        <select id="priority" name="priority" defaultValue="medium">
-          <option value="low">Baixa</option>
-          <option value="medium">Média</option>
-          <option value="high">Alta</option>
-        </select>
+        <div className="task-form__field">
+          <label htmlFor="priority">Prioridade</label>
+          <select id="priority" name="priority" defaultValue="medium">
+            <option value="low">Baixa</option>
+            <option value="medium">Média</option>
+            <option value="high">Alta</option>
+          </select>
+        </div>
       </div>
 
       <div className="task-form__field">

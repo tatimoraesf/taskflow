@@ -3,7 +3,7 @@
   border: 1px solid var(--border-light);
   border-radius: 20px;
   padding: 24px;
-  margin-bottom: 32px;
+  margin-bottom: 0;
   width: 100%;
   box-sizing: border-box;
   box-shadow: var(--shadow-md);

@@ -7,7 +7,7 @@
 .main-content {
   display: flex;
   gap: 32px;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 .sidebar {
