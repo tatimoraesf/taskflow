@@ -1,5 +1,7 @@
 # TaskFlow
 
+![CI](https://github.com/tatimoraesf/taskflow/actions/workflows/ci.yml/badge.svg)
+
 O **TaskFlow** é um gerenciador de tarefas pessoal que une uma interface moderna a uma estrutura de código pensada na confiabilidade do usuário. Mais do que uma lista de tarefas, este projeto foi meu laboratório para aplicar boas práticas de QA (Quality Assurance).
 
 ![Dashboard do TaskFlow](./public/screenshots/dashboard.png)
@@ -17,19 +19,22 @@ Durante o desenvolvimento, implementei:
 - **Cobertura de código** monitorada com relatórios do Vitest
 
 📁 Documentação disponível:
-- [Regras de Negócio (PRD)](https://github.com/tatimoraes/taskflow/blob/main/docs/PRD_TaskFlow.md)
-- [Casos de Teste](https://github.com/tatimoraes/taskflow/blob/main/docs/Casos_de_Teste_TaskFlow.md)
+
+- [Regras de Negócio (PRD)](https://github.com/tatimoraesf/taskflow/blob/main/docs/PRD_TaskFlow.md)
+- [Casos de Teste](https://github.com/tatimoraesf/taskflow/blob/main/docs/Casos_de_Teste_TaskFlow.md)
 
 ---
 
 ## ✨ Funcionalidades
 
 **Gestão de Tarefas**
+
 - Criar, editar e deletar tarefas com título, descrição e prioridade
 - Sistema de prioridades (Alta, Média, Baixa)
 - Barra de progresso visual
 
 **Experiência de Uso**
+
 - Busca em tempo real por título ou descrição
 - Filtros por status (Todas, Pendentes, Concluídas)
 - Interface em dark mode
@@ -52,20 +57,24 @@ A colaboração com IA acelerou o aprendizado, mas cada decisão de implementaç
 ## 🛠️ Tecnologias
 
 **Core**
+
 - React 18 + TypeScript
 - Vite (build tool)
 
 **UI/UX**
+
 - Lucide React (ícones)
 - React Hot Toast (notificações)
 
 **Testes**
+
 - Vitest (test runner)
 - React Testing Library (testes de componentes)
 
 ---
 
 ## 🚀 Rodando o Projeto
+
 ```bash
 # Instale as dependências
 npm install
@@ -78,3 +87,4 @@ npm test
 
 # Ver Relatório de Cobertura
 npm run test:coverage
+```
