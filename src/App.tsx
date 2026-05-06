@@ -1,18 +1,32 @@
 import TaskCard from './components/TaskCard';
 import TaskForm from './components/TaskForm';
 import ProgressBar from './components/ProgressBar';
-import TaskEditModal from './components/TaskEditModal';
 import './App.css';
 import EmptyState from './components/EmptyState';
 import { Toaster } from 'react-hot-toast';
 import { useTasks } from './hooks/useTasks';
 import { SearchBar } from './components/SearchBar';
+import { Sun, Moon } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 function App() {
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const saved = localStorage.getItem('taskflow-theme');
+    if (saved) return saved as 'light' | 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('taskflow-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  };
+
   const {
     tasks,
-    editingTask,
-    setEditingTask,
     addTask,
     toggleTask,
     deleteTask,
@@ -23,10 +37,18 @@ function App() {
 
   return (
     <div className="app-container">
-
       <header className="app-header">
-        <h1>TaskFlow</h1>
-        <p className="app-subtitle">Gerencie suas tarefas do dia</p>
+        <button 
+          onClick={toggleTheme} 
+          className="theme-toggle"
+          aria-label="Alternar tema"
+        >
+          {theme === 'light' ? <Moon size={24} /> : <Sun size={24} />}
+        </button>
+        <div className="app-header__main">
+          <h1>TaskFlow</h1>
+          <p className="app-subtitle">Gerencie suas tarefas do dia</p>
+        </div>
       </header>
 
       <ProgressBar
@@ -62,19 +84,12 @@ function App() {
                 task={task}
                 onToggle={toggleTask}
                 onDelete={deleteTask}
-                onEdit={setEditingTask}
+                onSave={editTask}
               />
             ))
           )}
         </main>
       </div>
-      {editingTask && (
-        <TaskEditModal
-          task={editingTask}
-          onSave={editTask}
-          onClose={() => setEditingTask(null)}
-        />
-      )}
       <Toaster />
     </div>
   )

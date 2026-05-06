@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import type { Task } from '../types/task.types';
-import { Trash2, Pencil } from 'lucide-react';
+import type { Task, TaskPriority } from '../types/task.types';
 import './TaskCard.css';
+import TaskEditModal from './TaskEditModal';
+import { useState } from 'react';
 
 interface TaskCardProps {
   task: Task;
   onToggle: (id: string) => void;
+  onSave: (id: string, title: string, priority: TaskPriority, description?: string) => void;
   onDelete: (id: string) => void;
-  onEdit: (task: Task) => void;
 }
 
 const priorityLabel = {
@@ -16,16 +16,25 @@ const priorityLabel = {
   high: 'Alta'
 }
 
-function TaskCard({ task, onToggle, onDelete, onEdit }: TaskCardProps) {
-  const [confirming, setConfirming] = useState(false);
+function TaskCard({ task, onToggle, onSave, onDelete }: TaskCardProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
-    <div className={`task-card ${task.done ? 'task-card--done' : ''} ${confirming ? 'task-card--confirm-active' : ''}`}>
+    <div 
+      className={`task-card ${task.done ? 'task-card--done' : ''}`}
+      onClick={() => setIsModalOpen(true)}
+      role="button"
+      tabIndex={0}
+    >
       <input
         type="checkbox"
         className="task-card__checkbox"
         checked={task.done}
-        onChange={() => onToggle(task.id)}
+        onChange={(e) => {
+          e.stopPropagation();
+          onToggle(task.id);
+        }}
+        onClick={(e) => e.stopPropagation()}
       />
       <div className="task-card__info">
         <h3 className="task-card__title">{task.title}</h3>
@@ -34,42 +43,20 @@ function TaskCard({ task, onToggle, onDelete, onEdit }: TaskCardProps) {
         )}
       </div>
       <span className={`task-card__priority task-card__priority--${task.priority}`}>{priorityLabel[task.priority]}</span>
-
-      <div className="task-card__actions">
-        {confirming ? (
-          <>
-            <button
-              className="task-card__action task-card__action--confirm"
-              onClick={() => onDelete(task.id)}
-            >
-              Confirmar
-            </button>
-            <button
-              className="task-card__action task-card__action--cancel"
-              onClick={() => setConfirming(false)}
-            >
-              Cancelar
-            </button>
-          </>
-        ) : (
-          <>
-            <button
-              className="task-card__action"
-              onClick={() => onEdit(task)}
-              aria-label="Editar tarefa"
-            >
-              <Pencil size={15} />
-            </button>
-            <button
-              className="task-card__action task-card__action--delete"
-              onClick={() => setConfirming(true)}
-              aria-label="Deletar tarefa"
-            >
-              <Trash2 size={15} />
-            </button>
-          </>
-        )}
-      </div>
+      {isModalOpen && (
+        <TaskEditModal
+          task={task}
+          onClose={() => setIsModalOpen(false)}
+          onSave={(id, t, p, d) => {
+            onSave(id, t, p, d);
+            setIsModalOpen(false);
+          }}
+          onDelete={(id) => {
+            onDelete(id);
+            setIsModalOpen(false);
+          }}
+        />
+      )}
     </div>
   )
 }
