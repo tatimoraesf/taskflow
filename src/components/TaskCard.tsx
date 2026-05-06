@@ -25,6 +25,7 @@ function TaskCard({ task, onToggle, onSave, onDelete }: TaskCardProps) {
       onClick={() => setIsModalOpen(true)}
       role="button"
       tabIndex={0}
+      aria-label="editar tarefa"
     >
       <input
         type="checkbox"

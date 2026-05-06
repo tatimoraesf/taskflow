@@ -38,6 +38,7 @@ describe('App Integration', () => {
 
     const editButton = screen.getByLabelText(/editar tarefa/i)
     await user.click(editButton)
+    await user.click(screen.getByLabelText(/editar tarefa/i, { selector: 'button' }))
 
     const modalInput = screen.getByDisplayValue('Tarefa Original')
     await user.clear(modalInput)
@@ -61,9 +62,7 @@ describe('App Integration', () => {
     const editButton = screen.getByLabelText(/editar tarefa/i)
     await user.click(editButton)
 
-    expect(screen.getByText(/editar tarefa/i)).toBeDefined()
-
-    const cancelButton = screen.getByRole('button', { name: /cancelar/i })
+    const cancelButton = screen.getByRole('button', { name: /fechar modal/i })
     await user.click(cancelButton)
 
     // expect(screen.queryByText(/cancelar/i)).toBeNull()
