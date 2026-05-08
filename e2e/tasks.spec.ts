@@ -36,4 +36,13 @@ test.describe('Tarefas', () => {
     await expect(page.getByText('Tarefa excluída com sucesso!')).toBeVisible();
     await expect(page.getByText('Tarefa para Excluir')).not.toBeVisible();
   });
+
+  test('deve exibir mensagem ao buscar tarefa inexistente', async ({ page }) => {
+    await page.goto('/');
+    await page.getByPlaceholder("Ex: Estudar Typescript").fill('Tarefa');
+    await page.getByRole('button', { name: /adicionar tarefa/i }).click();
+    await page.getByPlaceholder("Buscar tarefas...").fill('Tarefa para Buscar');
+
+    await expect(page.getByText(/🔍 Nenhuma tarefa encontrada para/i)).toBeVisible();
+  });
 });
