@@ -47,6 +47,7 @@ export const useTasks = () => {
     setTasks(tasks.map(task => task.id === id ? { ...task, title, priority, description } : task
     ))
     setEditingTask(null);
+    toast.success("Tarefa atualizada com sucesso!")
   }
 
   const filteredAndSortedTasks = tasks
