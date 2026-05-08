@@ -1,5 +1,10 @@
 import { test, expect } from '@playwright/test';
 
+test.beforeEach(async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => localStorage.clear());
+})
+
 test.describe('Tarefas', () => {
   test('deve criar uma tarefa com sucesso', async ({ page}) => {
     await page.goto('/');
