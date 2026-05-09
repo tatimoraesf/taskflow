@@ -56,44 +56,46 @@ function App() {
         done={tasks.filter(task => task.done).length}
       />
 
-      <SearchBar value={searchQuery} onChange={setSearchQuery} />
+      <main>
+        <SearchBar value={searchQuery} onChange={setSearchQuery} />
 
-      <div className="main-content">
-        <aside className="sidebar">
-          <TaskForm onAddTask={addTask} />
-        </aside>
+        <div className="content-row">
+          <aside className="sidebar">
+            <TaskForm onAddTask={addTask} />
+          </aside>
 
-        <main className="tasks-section">
-          {tasks.length === 0 && searchQuery === "" && (
-            <EmptyState />
-          )}
-          {tasks.length === 0 && searchQuery !== "" && (
-            <div className="text-center py-10">
-              <p className="text-gray-500 text-lg">
-                🔍 Nenhuma tarefa encontrada para <strong>"{searchQuery}"</strong>
-              </p>
-              <button onClick={() => setSearchQuery("")} className="mt-2 text-purple-600 hover:underline text-sm">
-                Limpar busca
-              </button>
-            </div>
-          )}
-          {tasks.length > 0 && (
-            tasks.map(task => (
-              <TaskCard
-                key={task.id}
-                task={task}
-                onToggle={toggleTask}
-                onDelete={deleteTask}
-                onSave={editTask}
-              />
-            ))
-          )}
-        </main>
-      </div>
+          <section className="tasks-section">
+            {tasks.length === 0 && searchQuery === "" && (
+              <EmptyState />
+            )}
+            {tasks.length === 0 && searchQuery !== "" && (
+              <div className="text-center py-10">
+                <p className="text-gray-500 text-lg">
+                  🔍 Nenhuma tarefa encontrada para <strong>"{searchQuery}"</strong>
+                </p>
+                <button onClick={() => setSearchQuery("")} className="mt-2 text-purple-600 hover:underline text-sm">
+                  Limpar busca
+                </button>
+              </div>
+            )}
+            {tasks.length > 0 && (
+              tasks.map(task => (
+                <TaskCard
+                  key={task.id}
+                  task={task}
+                  onToggle={toggleTask}
+                  onDelete={deleteTask}
+                  onSave={editTask}
+                />
+              ))
+            )}
+          </section>
+        </div>
+      </main>
+
       <Toaster />
     </div>
   )
 }
-
 
 export default App;

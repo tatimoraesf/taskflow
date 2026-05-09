@@ -38,7 +38,7 @@ function TaskCard({ task, onToggle, onSave, onDelete }: TaskCardProps) {
         onClick={(e) => e.stopPropagation()}
       />
       <div className="task-card__info">
-        <h3 className="task-card__title">{task.title}</h3>
+        <h2 className="task-card__title">{task.title}</h2>
         {task.description && (
           <p className="task-card__description">{task.description}</p>
         )}
